@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .nav {
+        float: right;
+        margin: 10px;
+    }
+    .logout {
+        margin-right: 10px;
+    }
+</style>
+<body>
+    <h1 style="display: inline-block">Hello {{ request.session.name }}</h1>
+    <div class="nav"><a href="/logout" class="logout">Logout</a><a href="/jobs/new" style="outline: 2px solid black; padding: 5px;">New Job!</a></div>
+    <h3>Everyone's Jobs</h3>
+    <table>
+        <thead>
+            <th>Job</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </thead>
+        {% for chicken in main_jobs %}
+            <tr>
+                <td class="user">{{ chicken.Name }}</td>
+                <td class="user">{{ chicken.Location }}</td>
+                <td class="user"><a href="/jobs/{{ chicken.id }}">View</a> | <a href="#">Add</a> | <a href="/remove/{{ chicken.id }}">Remove</a> | <a href="/jobs/edit/{{ chicken.id }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+        {% for banana in other_jobs %}
+            <tr>
+                <td class="non_user">{{ banana.Name }}</td>
+                <td class="non_user">{{ banana.Location }}</td>
+                <td class="non_user"><a href="/jobs/{{ banana.id }}">View</a> | <a href="#">Add</a></td> 
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

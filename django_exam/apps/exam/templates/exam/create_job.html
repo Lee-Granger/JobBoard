@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create Job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+</style>
+<body>
+<h1 style="display: inline-block;">Hello {{ request.session.name }}! Create a job!</h1><a href="#" style="float: right">Logout</a>    
+<br>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="content" style="border: 2px solid black; display: inline-block;width: 35%; height: 300px;">
+    <form action="/post_created_job" method="POST">
+        {% csrf_token %}
+        <p>Title: <input type="text" name="title"></p>
+        <p>Description: <input type="text" name="description"></p>
+        <p>Location: <input type="text" name="location"></p>
+        <a href="#" class="button">Cancel</a>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

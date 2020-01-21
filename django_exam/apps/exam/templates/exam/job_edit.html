@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  margin-right: 10px;
+}
+    </style>
+</head>
+<body>
+<h1 style="display: inline-block">Hello {{ request.session.name }}! Let's edit your Job!</h1><a href="/logout" style="float:right">Logout</a>    
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="container">
+    <form action="/post_edit_job/{{ job.id }}" method="POST">
+        {% csrf_token %}
+        <p>Title: <input type="text" name="title" value="{{ job.Name }}"></p>
+        <p>Description: <input type="text" name="description" value="{{ job.Description }}"></p>
+        <p>Location: <input type="text" name="location" value="{{ job.Location }}"></p>
+        <a href="/dashboard" class="button">Cancel</a><input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

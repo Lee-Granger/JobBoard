@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    div {
+        display: inline-block;
+        border: 2px solid black;
+        padding: 20px;
+    }
+
+    .right {
+        float: right;
+    }    
+</style>
+<body>
+<h1>Welcome!! Sign in to manage your Jobs!</h1>    
+<div class="left">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="/register_user" method="POST">
+        {% csrf_token %}
+        <h3>Register</h3>
+        <p>First Name: <input type="text" name="f_name"></p>
+        <p>Last Name: <input type="text" name="l_name"></p>
+        <p>Email: <input type="text" name="email"></p>
+        <p>Password: <input type="password" name="pword"></p>
+        <p>Confirm Password: <input type="password" name="confirm_pword"></p>
+        <input type="submit" value="Register">
+    </form>    
+</div>
+<div class="right">
+    <h1>Login</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <form action="/login_user">
+        <p>Email: <input type="text" name="email"></p>
+        <p>Password: <input type="password" name="pword"></p>
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>
+</html>

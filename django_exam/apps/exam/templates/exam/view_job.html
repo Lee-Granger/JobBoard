@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>View Job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h1 style="display: inline-block;">Hello {{ request.session.name }}  ! These are the job details!</h1><div style="float: right"><a href="/dashboard">Dashboard</a><a href="/logout" style="margin-left: 20px;">Logout</a></div>   
+<h4> </h4>
+<div class="desc">
+    <p></p>
+    <p>Location: {{ job.Location }}</p>
+    <p>Posted By: {{ job.user.First_name }}</p>
+    <p>Posted On: {{ job.Created_at }}</p>
+    <p>Description: {{ job.Description }}</p>
+</div>
+</body>
+</html>
